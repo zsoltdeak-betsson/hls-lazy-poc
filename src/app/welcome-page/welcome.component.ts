@@ -1,10 +1,10 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
   template: `
     <div>
     <h1> Welcome to the POC page</h1>
-    <a href='/video'> Video page </a>
+    <a routerLink='video'> Video page </a>
     </div>
   `,
   styles: [`div {
