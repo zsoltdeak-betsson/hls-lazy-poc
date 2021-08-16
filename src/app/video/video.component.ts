@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
+import type * as Hls from 'hls.js';
 
 @Component({
   template: `<div>
@@ -23,16 +24,16 @@ export class VideoComponent implements OnInit {
   readonly src = 'assets/geoff.mp4';
 
   private hls: Hls | undefined;
-  private HLS: any;
+  private HLS: typeof Hls | undefined;
 
   @ViewChild('video', { static: true }) private readonly video: ElementRef<HTMLVideoElement>;
 
   async ngOnInit(): Promise<void> {
-    const HLS = await import('hls.js') as unknown as { default: () => void, isSupported: () => boolean };
+    const HLS = await import('hls.js');
     if (!HLS.isSupported()) {
       return;
     }
-    this.hls = new HLS.default();
+    this.hls = new HLS();
     this.HLS = HLS;
   }
 
